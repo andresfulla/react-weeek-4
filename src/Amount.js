@@ -26,6 +26,7 @@ export default class Amount extends React.Component {
           <span>{this.props.name}</span>
           <input
             className={this.state.isNegative ? 'negative' : ''}
+            disabled={this.props.disabled}
             onChange={this._onChange}
             placeholder="0"
             step="0.1"
