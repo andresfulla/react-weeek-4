@@ -1,7 +1,10 @@
 import React from 'react';
 import './Amount.css';
+import ConverterContext from './ConverterContext';
 
 export default class Amount extends React.Component {
+  static contextType = ConverterContext;
+
   constructor(props) {
     super(props);
 
@@ -22,7 +25,7 @@ export default class Amount extends React.Component {
     const {value} = this.props;
 
     return (
-        <label className="amount">
+        <label className={`amount ${this.context.theme}`}>
           <span>{this.props.name}</span>
           <input
             className={this.state.isNegative ? 'negative' : ''}

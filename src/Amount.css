@@ -11,3 +11,8 @@
 .amount input.negative {
   border: 3px solid #f00;
 }
+
+.amount.dark input, .amount.dark select {
+  background-color: #555;
+  color: #ccc;
+}

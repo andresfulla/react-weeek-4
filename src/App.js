@@ -1,6 +1,7 @@
 import React from 'react';
 import Amount from './Amount';
 import './App.css';
+import ConverterContext from './ConverterContext';
 
 const SECOND = 1000; // milliseconds
 const CRASH_DELAY = 5 * SECOND;
@@ -15,6 +16,7 @@ export default class App extends React.Component {
 
     this.state = {
       exchangeRate: exchangeRate(),
+      theme: 'light',
       value: 0
     };
   }
@@ -40,19 +42,31 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <Amount
-          name="Euros"
-          onChange={this._onChange}
-          value={this.state.value}
-        />
-        <Amount
-          disabled
-          name="$BTC"
-          onChange={this._onChange}
-          value={(this.state.value * this.state.exchangeRate).toFixed(4)}
-        />
-      </div>
+      <ConverterContext.Provider value={{theme: this.state.theme}}>
+        <div className={`app ${this.state.theme}`}>
+          <label>
+            <span>Theme</span>
+            <select
+              onChange={event => this.setState({theme: event.target.value})}
+              value={this.state.theme}
+            >
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </label>
+          <Amount
+            name="Euros"
+            onChange={this._onChange}
+            value={this.state.value}
+          />
+          <Amount
+            disabled
+            name="$BTC"
+            onChange={this._onChange}
+            value={(this.state.value * this.state.exchangeRate).toFixed(4)}
+          />
+        </div>
+      </ConverterContext.Provider>
     );
   }
 }

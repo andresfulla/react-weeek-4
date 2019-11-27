@@ -1,0 +1,27 @@
+.app {
+  font-size: 1.2em;
+  padding: 8px;
+  height: 100vh;
+}
+
+.app input {
+  font-size: 1rem;
+  margin-left: 8px;
+  padding: 8px;
+}
+
+.app select {
+  appearance: none;
+  margin-left: 8px;
+  padding: 8px;
+}
+
+.app.dark {
+  background: #000;
+  color: #efefef;
+}
+
+.app.dark select {
+  background: #2e2e2e;
+  color: #efefef;
+}
