@@ -9,12 +9,18 @@ export default class Amount extends React.Component {
   }
 
   _onChange = event => {
-    const isNegative = parseFloat(event.currentTarget.value) < 0;
+    const value = parseFloat(event.currentTarget.value);
+
+    const isNegative = Number.isNaN(value) ? false : value < 0;
 
     this.setState({isNegative});
+
+    this.props.onChange(value);
   }
 
   render() {
+    const {value} = this.props;
+
     return (
         <label className="amount">
           <span>{this.props.name}</span>
@@ -24,6 +30,7 @@ export default class Amount extends React.Component {
             placeholder="0"
             step="0.1"
             type="number"
+            value={Number.isNaN(value) ? '': value}
           />
         </label>
     );
