@@ -7,12 +7,17 @@
   border: 3px solid #888;
 }
 
-
 .amount input.negative {
   border: 3px solid #f00;
 }
 
-.amount.dark input, .amount.dark select {
+.amount.dark input,
+.amount.dark select {
   background-color: #555;
   color: #ccc;
+}
+
+.amount.premium input {
+  border-color: gold;
+  box-shadow: 0px 0px 10px gold;
 }

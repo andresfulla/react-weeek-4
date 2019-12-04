@@ -16,6 +16,24 @@
   padding: 8px;
 }
 
+.app button {
+  padding: 9px;
+  background: #ccc;
+  color: #000;
+  font-size: 16px;
+}
+
+.app.dark button {
+  padding: 9px;
+  background: cadetblue;
+  color: #000;
+}
+
+.app .app--header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .app.dark {
   background: #000;
   color: #efefef;

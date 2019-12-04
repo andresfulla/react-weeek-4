@@ -19,24 +19,27 @@ export default class Amount extends React.Component {
     this.setState({isNegative});
 
     this.props.onChange(value);
-  }
+  };
 
   render() {
     const {value} = this.props;
 
     return (
-        <label className={`amount ${this.context.theme}`}>
-          <span>{this.props.name}</span>
-          <input
-            className={this.state.isNegative ? 'negative' : ''}
-            disabled={this.props.disabled}
-            onChange={this._onChange}
-            placeholder="0"
-            step="0.1"
-            type="number"
-            value={Number.isNaN(value) ? '': value}
-          />
-        </label>
+      <label
+        className={`amount ${this.context.theme} ${
+          this.context.premium ? ' premium' : ''
+        }`}>
+        <span>{this.props.name}</span>
+        <input
+          className={this.state.isNegative ? 'negative' : ''}
+          disabled={this.props.disabled}
+          onChange={this._onChange}
+          placeholder="0"
+          step="0.1"
+          type="number"
+          value={Number.isNaN(value) ? '' : value}
+        />
+      </label>
     );
   }
 }

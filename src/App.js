@@ -18,6 +18,7 @@ export default class App extends React.Component {
       theme: 'light',
       value: 0,
       conversions: 0,
+      premium: false,
     };
   }
 
@@ -30,7 +31,9 @@ export default class App extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.conversions > MAX_CONVERSIONS) {
+    const {conversions, premium} = this.state;
+
+    if (!premium && conversions > MAX_CONVERSIONS) {
       alert('Convert without limits with out Premium Package');
       this.setState({conversions: 0});
     }
@@ -38,17 +41,29 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <ConverterContext.Provider value={{theme: this.state.theme}}>
+      <ConverterContext.Provider
+        value={{theme: this.state.theme, premium: this.state.premium}}>
         <div className={`app ${this.state.theme}`}>
-          <label>
-            <span>Theme</span>
-            <select
-              onChange={event => this.setState({theme: event.target.value})}
-              value={this.state.theme}>
-              <option value="dark">Dark</option>
-              <option value="light">Light</option>
-            </select>
-          </label>
+          <div className="app--header">
+            <label>
+              <span>Theme</span>
+              <select
+                onChange={event => this.setState({theme: event.target.value})}
+                value={this.state.theme}>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </label>
+            {!this.state.premium ? (
+              <button
+                onClick={() => this.setState({premium: true})}
+                type="button">
+                Become Premium
+              </button>
+            ) : (
+              <span>You are premium</span>
+            )}
+          </div>
           <div>
             <Converter
               header={<h1>Bitcoin to Euro</h1>}
