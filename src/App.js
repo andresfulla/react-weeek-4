@@ -7,6 +7,8 @@ function exchangeRate() {
   return Math.random() * 10000;
 }
 
+const MAX_CONVERSIONS = 5;
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,23 @@ export default class App extends React.Component {
       exchangeRate: exchangeRate(),
       theme: 'light',
       value: 0,
+      conversions: 0,
     };
+  }
+
+  _onConversion = () => {
+    this.setState(prevState => {
+      return {
+        conversions: prevState.conversions + 1,
+      };
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.conversions > MAX_CONVERSIONS) {
+      alert('Convert without limits with out Premium Package');
+      this.setState({conversions: 0});
+    }
   }
 
   render() {
@@ -35,11 +53,14 @@ export default class App extends React.Component {
             <Converter
               header={<h1>Bitcoin to Euro</h1>}
               cryptoName="$BTC"
-              exchangeRate={0.5}></Converter>
+              exchangeRate={0.5}
+              onChange={this._onConversion}
+            />
             <Converter
               header={<h1>Etherium converter</h1>}
               cryptoName="$ETH"
               exchangeRate={1.2}
+              onChange={this._onConversion}
             />
           </div>
         </div>

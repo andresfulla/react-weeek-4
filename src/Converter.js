@@ -12,9 +12,16 @@ export default class Converter extends React.Component {
   }
 
   _onChange = value => {
-    this.setState({
-      value,
-    });
+    this.setState(
+      {
+        value,
+      },
+      () => {
+        if (this.props.onChange) {
+          this.props.onChange(this.state.value);
+        }
+      },
+    );
   };
 
   render() {
