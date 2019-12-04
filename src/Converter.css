@@ -5,3 +5,8 @@
   flex-direction: column;
   border: 3px solid #888;
 }
+
+.converter .converter--header h1 {
+  font-size: 20px;
+  text-transform: uppercase;
+}

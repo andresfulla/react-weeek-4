@@ -32,8 +32,15 @@ export default class App extends React.Component {
             </select>
           </label>
           <div>
-            <Converter cryptoName="$BTC" exchangeRate={0.5} />
-            <Converter cryptoName="$ETH" exchangeRate={1.2} />
+            <Converter
+              header={<h1>Bitcoin to Euro</h1>}
+              cryptoName="$BTC"
+              exchangeRate={0.5}></Converter>
+            <Converter
+              header={<h1>Etherium converter</h1>}
+              cryptoName="$ETH"
+              exchangeRate={1.2}
+            />
           </div>
         </div>
       </ConverterContext.Provider>

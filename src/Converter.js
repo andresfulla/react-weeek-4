@@ -18,10 +18,12 @@ export default class Converter extends React.Component {
   };
 
   render() {
-    const {cryptoName, exchangeRate} = this.props;
+    const {header, cryptoName, exchangeRate} = this.props;
 
     return (
       <div className="converter">
+        {header && <div className="converter--header">{header}</div>}
+
         <Amount
           name="Euros"
           onChange={this._onChange}
