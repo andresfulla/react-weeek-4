@@ -33,6 +33,7 @@ export default class App extends React.Component {
           </label>
           <div>
             <Converter cryptoName="$BTC" exchangeRate={0.5} />
+            <Converter cryptoName="$ETH" exchangeRate={1.2} />
           </div>
         </div>
       </ConverterContext.Provider>
